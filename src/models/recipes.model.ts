@@ -1,5 +1,7 @@
+import {Entity, model, property, hasMany} from '@loopback/repository';
 import uuid from 'uuid-random';
-import {Entity, model, property} from '@loopback/repository';
+import {Ingredients} from './ingredients.model';
+import {RecipeIngredient} from './recipe-ingredient.model';
 
 @model({settings: {strict: false}})
 export class Recipes extends Entity {
@@ -48,15 +50,8 @@ export class Recipes extends Entity {
   })
   Steps: string[];
 
-  @property({
-    type: 'array',
-    itemType: 'object',
-    required: true,
-  })
-  Ingredients: object[];
-
-  // Define well-known properties here
-
+  @hasMany(() => Ingredients, {through: {model: () => RecipeIngredient, keyFrom: 'RecipeId', keyTo: 'IngredientId'}})
+  Ingredients: Ingredients[];
   // Indexer property to allow additional data
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [prop: string]: any;

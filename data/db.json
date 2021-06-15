@@ -1,17 +1,20 @@
 {
   "ids": {
-    "Ingredients": 10
+    "Ingredients": 3,
+    "Recipes": 2,
+    "RecipeIngredient": 3
   },
   "models": {
     "Ingredients": {
-      "1": "{\"Id\":\"1\",\"Name\":\"Ajo\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "2": "{\"Id\":\"2\",\"Name\":\"Perejil\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "4": "{\"Name\":\"Pimienta\",\"Type\":\"Condimento\",\"Calories\":0,\"Id\":\"4\"}",
-      "5": "{\"Name\":\"Pimenton\",\"Type\":\"Condimento\",\"Calories\":0,\"Id\":\"5\"}",
-      "af2761d1-1e24-4d5c-a452-29571e107507": "{\"Id\":\"af2761d1-1e24-4d5c-a452-29571e107507\",\"Name\":\"Canela\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "6362c5e8-4846-4e7b-bd71-c4eea00ef14b": "{\"Id\":\"6362c5e8-4846-4e7b-bd71-c4eea00ef14b\",\"Name\":\"Tomillo\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "60f6230e-88b6-4fc1-8ae7-7f10602ea0b4": "{\"Id\":\"60f6230e-88b6-4fc1-8ae7-7f10602ea0b4\",\"Name\":\"Orégano\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "e7bb8454-3205-4496-b171-9fecd5d2cd84": "{\"Id\":\"e7bb8454-3205-4496-b171-9fecd5d2cd84\",\"Name\":\"Sal\",\"Type\":\"Condimento\",\"Calories\":0}"
+      "fb146561-a4eb-4a30-b718-d910790c4026": "{\"Id\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Name\":\"Ajo\",\"Type\":\"Condimento\",\"Calories\":0}",
+      "a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf": "{\"Id\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Name\":\"Tomate\",\"Type\":\"Verdura\",\"Calories\":10}"
+    },
+    "Recipes": {
+      "224753e4-935c-4705-b63e-ed47333ae3ed": "{\"Category\":\"Salado\",\"Id\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"Kitchen_type\":\"Comida\",\"Dish_type\":\"Sopa\",\"Difficulty\":0,\"Time\":\"10\",\"Steps\":[\"abrir bote\"]}"
+    },
+    "RecipeIngredient": {
+      "1": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Id\":\"1\"}",
+      "2": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Id\":\"2\"}"
     }
   }
 }
