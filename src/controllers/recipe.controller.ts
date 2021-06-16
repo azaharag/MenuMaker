@@ -198,7 +198,7 @@ export class RecipeController {
         'application/json': {
           schema: getModelSchemaRef(Ingredients, {
             title: 'NewIngredientsInRecipes',
-            //exclude: ['Id'],
+            exclude: ['Id'],
           }),
         },
       },
@@ -210,7 +210,7 @@ export class RecipeController {
         Name: ingredients.Name
       },
     });
-    console.log(ingrediente);
+    //console.log(ingrediente);
     if (ingrediente.length == 0) {
       return this.recipesRepository.Ingredients(id).create(ingredients);
     }
@@ -220,7 +220,7 @@ export class RecipeController {
       ri.IngredientId = ingrediente[0].Id;
       ri.RecipeId = id!;
       this.recipeIngredientRepository.create(ri);
-      return ingrediente[0]
+      return ingrediente[0];
     }
   }
 

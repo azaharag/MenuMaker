@@ -1,10 +1,16 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import uuid from 'uuid-random';
 import {Ingredients} from './ingredients.model';
 import {RecipeIngredient} from './recipe-ingredient.model';
 
 @model({settings: {strict: false}})
 export class Recipes extends Entity {
+  @property({
+    type: 'string',
+    required: true,
+  })
+  Name: string;
+
   @property({
     type: 'string',
     required: true,
