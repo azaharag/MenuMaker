@@ -73,13 +73,13 @@ export class RecipesIngredientsController {
       },
     });
     console.log(ingrediente);
-    if (ingrediente == null)
+    if (ingrediente.length == 0) {
       return this.recipesRepository.Ingredients(id).create(ingredients);
+    }
     else {
       //this.ingredientRepository.findById(ingrediente[0].Id);
       let ri: RecipeIngredient = new RecipeIngredient();
       ri.IngredientId = ingrediente[0].Id;
-      console.log(id);
       ri.RecipeId = id!;
       this.recipeIngredientRepository.create(ri);
       return ingrediente[0]

@@ -1,20 +1,23 @@
 {
   "ids": {
-    "Ingredients": 3,
+    "Ingredients": 4,
     "Recipes": 2,
-    "RecipeIngredient": 3
+    "RecipeIngredient": 5
   },
   "models": {
     "Ingredients": {
       "fb146561-a4eb-4a30-b718-d910790c4026": "{\"Id\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Name\":\"Ajo\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf": "{\"Id\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Name\":\"Tomate\",\"Type\":\"Verdura\",\"Calories\":10}"
+      "a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf": "{\"Id\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Name\":\"Tomate\",\"Type\":\"Verdura\",\"Calories\":34}",
+      "48d80318-482a-4b91-a76f-2e21c9f58c4c": "{\"Id\":\"48d80318-482a-4b91-a76f-2e21c9f58c4c\",\"Name\":\"Pimiento\",\"Type\":\"Verdura\",\"Calories\":0}"
     },
     "Recipes": {
       "224753e4-935c-4705-b63e-ed47333ae3ed": "{\"Category\":\"Salado\",\"Id\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"Kitchen_type\":\"Comida\",\"Dish_type\":\"Sopa\",\"Difficulty\":0,\"Time\":\"10\",\"Steps\":[\"abrir bote\"]}"
     },
     "RecipeIngredient": {
       "1": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Id\":\"1\"}",
-      "2": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Id\":\"2\"}"
+      "2": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Id\":\"2\"}",
+      "3": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Id\":\"3\"}",
+      "4": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"48d80318-482a-4b91-a76f-2e21c9f58c4c\",\"Id\":\"4\"}"
     }
   }
 }

@@ -1,35 +1,36 @@
 import {
-  Count,
-  CountSchema,
   Filter,
   FilterExcludingWhere,
-  repository,
-  Where,
+  repository
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
-  put,
-  del,
-  requestBody,
-  response,
+  del, get,
+  getModelSchemaRef, param, post, put, requestBody,
+  response
 } from '@loopback/rest';
-import {Recipes} from '../models';
-import {RecipesRepository} from '../repositories';
+import {Errors, Recipes} from '../models';
+import {IngredientsRepository, RecipeIngredientRepository, RecipesRepository} from '../repositories';
 
 export class RecipeController {
   constructor(
     @repository(RecipesRepository)
-    public recipesRepository : RecipesRepository,
-  ) {}
+    public recipesRepository: RecipesRepository,
+    @repository(IngredientsRepository) protected ingredientRepository: IngredientsRepository,
+    @repository(RecipeIngredientRepository) protected recipeIngredientRepository: RecipeIngredientRepository
+  ) { }
 
   @post('/recipes')
-  @response(200, {
+  @response(201, {
     description: 'Recipes model instance',
     content: {'application/json': {schema: getModelSchemaRef(Recipes)}},
+  })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async create(
     @requestBody({
@@ -47,17 +48,6 @@ export class RecipeController {
     return this.recipesRepository.create(recipes);
   }
 
-  @get('/recipes/count')
-  @response(200, {
-    description: 'Recipes model count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async count(
-    @param.where(Recipes) where?: Where<Recipes>,
-  ): Promise<Count> {
-    return this.recipesRepository.count(where);
-  }
-
   @get('/recipes')
   @response(200, {
     description: 'Array of Recipes model instances',
@@ -70,29 +60,22 @@ export class RecipeController {
       },
     },
   })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
   async find(
     @param.filter(Recipes) filter?: Filter<Recipes>,
   ): Promise<Recipes[]> {
     return this.recipesRepository.find(filter);
-  }
-
-  @patch('/recipes')
-  @response(200, {
-    description: 'Recipes PATCH success count',
-    content: {'application/json': {schema: CountSchema}},
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Recipes, {partial: true}),
-        },
-      },
-    })
-    recipes: Recipes,
-    @param.where(Recipes) where?: Where<Recipes>,
-  ): Promise<Count> {
-    return this.recipesRepository.updateAll(recipes, where);
   }
 
   @get('/recipes/{id}')
@@ -104,6 +87,14 @@ export class RecipeController {
       },
     },
   })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
   async findById(
     @param.path.string('id') id: string,
     @param.filter(Recipes, {exclude: 'where'}) filter?: FilterExcludingWhere<Recipes>
@@ -111,38 +102,46 @@ export class RecipeController {
     return this.recipesRepository.findById(id, filter);
   }
 
-  @patch('/recipes/{id}')
-  @response(204, {
-    description: 'Recipes PATCH success',
-  })
-  async updateById(
-    @param.path.string('id') id: string,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Recipes, {partial: true}),
-        },
-      },
-    })
-    recipes: Recipes,
-  ): Promise<void> {
-    await this.recipesRepository.updateById(id, recipes);
-  }
-
   @put('/recipes/{id}')
-  @response(204, {
+  @response(200, {
     description: 'Recipes PUT success',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Recipes, {includeRelations: true}),
+      },
+    },
+  })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async replaceById(
     @param.path.string('id') id: string,
     @requestBody() recipes: Recipes,
-  ): Promise<void> {
+  ): Promise<Recipes> {
     await this.recipesRepository.replaceById(id, recipes);
+    return this.recipesRepository.findById(id);
   }
 
   @del('/recipes/{id}')
   @response(204, {
     description: 'Recipes DELETE success',
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.recipesRepository.deleteById(id);
