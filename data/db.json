@@ -1,18 +1,21 @@
 {
   "ids": {
-    "Ingredients": 4,
-    "Recipes": 2,
+    "Ingredients": 5,
+    "Recipes": 3,
     "RecipeIngredient": 5,
-    "Menus": 2
+    "Menus": 4,
+    "MenusRecipes": 1
   },
   "models": {
     "Ingredients": {
       "fb146561-a4eb-4a30-b718-d910790c4026": "{\"Id\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Name\":\"Ajo\",\"Type\":\"Condimento\",\"Calories\":0}",
       "a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf": "{\"Id\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Name\":\"Tomate\",\"Type\":\"Verdura\",\"Calories\":34}",
-      "48d80318-482a-4b91-a76f-2e21c9f58c4c": "{\"Id\":\"48d80318-482a-4b91-a76f-2e21c9f58c4c\",\"Name\":\"Pimiento\",\"Type\":\"Verdura\",\"Calories\":0}"
+      "48d80318-482a-4b91-a76f-2e21c9f58c4c": "{\"Id\":\"48d80318-482a-4b91-a76f-2e21c9f58c4c\",\"Name\":\"Pimiento\",\"Type\":\"Verdura\",\"Calories\":0}",
+      "649f5624-d5c3-43bd-84d4-5d5ca2537477": "{\"Id\":\"649f5624-d5c3-43bd-84d4-5d5ca2537477\",\"Name\":\"Lechuga\",\"Type\":\"Verdura\",\"Calories\":20}"
     },
     "Recipes": {
-      "224753e4-935c-4705-b63e-ed47333ae3ed": "{\"Category\":\"Salado\",\"Id\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"Kitchen_type\":\"Comida\",\"Dish_type\":\"Sopa\",\"Difficulty\":0,\"Time\":\"10\",\"Steps\":[\"abrir bote\"]}"
+      "224753e4-935c-4705-b63e-ed47333ae3ed": "{\"Category\":\"Salado\",\"Id\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"Kitchen_type\":\"Comida\",\"Dish_type\":\"Sopa\",\"Difficulty\":0,\"Time\":\"10\",\"Steps\":[\"abrir bote\"]}",
+      "4b6f9630-d79c-407a-8c11-4972ff088f91": "{\"Name\":\"Gachas\",\"Category\":\"Dulce\",\"Id\":\"4b6f9630-d79c-407a-8c11-4972ff088f91\",\"Kitchen_type\":\"Desayuno\",\"Dish_type\":\"Desayuno\",\"Difficulty\":2,\"Time\":\"10\",\"Steps\":[\"Poner avena y agua en un cazo y calentar\"],\"additionalProp1\":{}}"
     },
     "RecipeIngredient": {
       "1": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Id\":\"1\"}",
@@ -21,7 +24,10 @@
       "4": "{\"RecipeId\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"IngredientId\":\"48d80318-482a-4b91-a76f-2e21c9f58c4c\",\"Id\":\"4\"}"
     },
     "Menus": {
-      "ee606f2b-2bdf-4fcf-8c74-1417974a8550": "{\"Id\":\"ee606f2b-2bdf-4fcf-8c74-1417974a8550\",\"Name\":\"Menu1\",\"ChefId\":\"1\",\"additionalProp1\":{}}"
-    }
+      "ee606f2b-2bdf-4fcf-8c74-1417974a8550": "{\"Id\":\"ee606f2b-2bdf-4fcf-8c74-1417974a8550\",\"Name\":\"Menu1\",\"ChefId\":\"1\",\"additionalProp1\":{}}",
+      "4563100c-705b-4803-8be1-1d9d9b0ed604": "{\"Id\":\"4563100c-705b-4803-8be1-1d9d9b0ed604\",\"Name\":\"Semana de Navidad\",\"ChefId\":\"123\",\"Category\":\"pepe\",\"additionalProp1\":{}}",
+      "7d3b12a3-e60c-4ef3-b5c0-d6eb992547c1": "{\"Id\":\"7d3b12a3-e60c-4ef3-b5c0-d6eb992547c1\",\"Name\":\"Menu2\",\"ChefId\":\"1\",\"Category\":\"prueba\",\"additionalProp1\":{}}"
+    },
+    "MenusRecipes": {}
   }
 }

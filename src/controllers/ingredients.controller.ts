@@ -36,14 +36,15 @@ export class IngredientsController {
         'application/json': {
           schema: getModelSchemaRef(Ingredients, {
             title: 'NewIngredients',
-            exclude: ['id'],
+            exclude: ['Id'],
           }),
         },
       },
     })
-    ingredients: Omit<Ingredients, 'id'>,
+    ingredients: Omit<Ingredients, 'Id'>,
   ): Promise<Ingredients> {
     return this.ingredientsRepository.create(ingredients);
+
   }
 
   @get('/ingredients')
@@ -123,7 +124,15 @@ export class IngredientsController {
   })
   async replaceById(
     @param.path.string('id') id: string,
-    @requestBody() ingredients: Ingredients,
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Ingredients, {
+            exclude: ['Id'],
+          }),
+        },
+      },
+    }) ingredients: Ingredients,
   ): Promise<Ingredients> {
     await this.ingredientsRepository.replaceById(id, ingredients);
     return this.ingredientsRepository.findById(id);

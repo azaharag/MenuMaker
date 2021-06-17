@@ -9,7 +9,7 @@ import {
   getModelSchemaRef, getWhereSchemaFor, param, post, put, requestBody,
   response
 } from '@loopback/rest';
-import {Menus, MenusRecipes, Recipes} from '../models';
+import {Errors, Menus, MenusRecipes, Recipes} from '../models';
 import {MenusRecipesRepository, MenusRepository, RecipesRepository} from '../repositories';
 
 export class MenusController {
@@ -21,9 +21,17 @@ export class MenusController {
   ) { }
 
   @post('/menus')
-  @response(200, {
+  @response(201, {
     description: 'Menus model instance',
     content: {'application/json': {schema: getModelSchemaRef(Menus)}},
+  })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async create(
     @requestBody({
@@ -53,6 +61,18 @@ export class MenusController {
       },
     },
   })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
   async find(
     @param.filter(Menus) filter?: Filter<Menus>,
   ): Promise<Menus[]> {
@@ -69,6 +89,14 @@ export class MenusController {
       },
     },
   })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
   async findById(
     @param.path.string('id') id: string,
     @param.filter(Menus, {exclude: 'where'}) filter?: FilterExcludingWhere<Menus>
@@ -77,19 +105,53 @@ export class MenusController {
   }
 
   @put('/menus/{id}')
-  @response(204, {
+  @response(200, {
     description: 'Menus PUT success',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(Menus, {includeRelations: true})
+      }
+    }
+  })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async replaceById(
     @param.path.string('id') id: string,
-    @requestBody() menus: Menus,
-  ): Promise<void> {
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Menus, {
+            exclude: ['Id'],
+          }),
+        },
+      },
+    }) menus: Menus,
+  ): Promise<Menus> {
     await this.menusRepository.replaceById(id, menus);
+    return this.menusRepository.findById(id);
   }
 
   @del('/menus/{id}')
   @response(204, {
     description: 'Menus DELETE success',
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.menusRepository.deleteById(id);
@@ -107,6 +169,14 @@ export class MenusController {
       },
     },
   })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
   async findRel(
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Recipes>,
@@ -122,6 +192,14 @@ export class MenusController {
       },
     },
   })
+  @response(400, {
+    description: 'Bad Request',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
   async createRel(
     @param.path.string('id') id: typeof Menus.prototype.Id,
     @requestBody({
@@ -133,7 +211,7 @@ export class MenusController {
           }),
         },
       },
-    }) recipes: Recipes,
+    }) recipes: Omit<Recipes, 'id'>,
   ): Promise<Recipes> {
 
     let receta = await this.recipesRepository.find({where: {Name: recipes.Name}, });
@@ -156,6 +234,14 @@ export class MenusController {
         description: 'Menus.Recipes DELETE success count',
       },
     },
+  })
+  @response(404, {
+    description: 'Not Found',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
+  })
+  @response(500, {
+    description: 'Internal Server Error',
+    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
   async delete(
     @param.path.string('id') id: string,

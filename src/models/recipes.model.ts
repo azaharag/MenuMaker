@@ -3,7 +3,7 @@ import uuid from 'uuid-random';
 import {Ingredients} from './ingredients.model';
 import {RecipeIngredient} from './recipe-ingredient.model';
 
-@model({settings: {strict: false}})
+@model({settings: {strict: true}})
 export class Recipes extends Entity {
   @property({
     type: 'string',
@@ -21,7 +21,8 @@ export class Recipes extends Entity {
     type: 'string',
     id: true,
     required: false,
-    default: uuid()
+    default: uuid(),
+    hidden: true,
   })
   Id?: string;
 

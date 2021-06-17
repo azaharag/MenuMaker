@@ -3,13 +3,14 @@ import uuid from 'uuid-random';
 import {MenusRecipes} from './menus-recipes.model';
 import {Recipes} from './recipes.model';
 
-@model({settings: {strict: false}})
+@model({settings: {strict: true}})
 export class Menus extends Entity {
   @property({
     type: 'string',
     id: true,
     required: false,
-    default: uuid()
+    default: uuid(),
+    hidden: true,
   })
   Id?: string;
 

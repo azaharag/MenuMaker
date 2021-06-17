@@ -1,13 +1,14 @@
 import {Entity, model, property} from '@loopback/repository';
 import uuid from 'uuid-random';
 
-@model({settings: {strict: false}})
+@model({settings: {strict: true}})
 export class Ingredients extends Entity {
   @property({
     id: true,
     type: 'string',
     required: false,
-    default: uuid()
+    default: uuid(),
+    hidden: true,
   })
   Id: string;
 

@@ -12,7 +12,7 @@ import {
 import {Errors, Ingredients, RecipeIngredient, Recipes} from '../models';
 import {IngredientsRepository, RecipeIngredientRepository, RecipesRepository} from '../repositories';
 
-export class RecipeController {
+export class RecipesController {
   constructor(
     @repository(RecipesRepository)
     public recipesRepository: RecipesRepository,
@@ -126,7 +126,15 @@ export class RecipeController {
   })
   async replaceById(
     @param.path.string('id') id: string,
-    @requestBody() recipes: Recipes,
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Recipes, {
+            exclude: ['Id'],
+          }),
+        },
+      },
+    }) recipes: Recipes,
   ): Promise<Recipes> {
     await this.recipesRepository.replaceById(id, recipes);
     return this.recipesRepository.findById(id);
@@ -202,7 +210,7 @@ export class RecipeController {
           }),
         },
       },
-    }) ingredients: Ingredients,
+    }) ingredients: Omit<Ingredients, 'Id'>,
   ): Promise<Ingredients> {
 
     let ingrediente = await this.ingredientRepository.find({

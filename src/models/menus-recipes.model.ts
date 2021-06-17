@@ -1,11 +1,12 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model({settings: {strict: false}})
+@model({settings: {strict: true}})
 export class MenusRecipes extends Entity {
   @property({
     type: 'string',
     id: true,
     generated: true,
+    hidden: true,
   })
   Id?: string;
 
