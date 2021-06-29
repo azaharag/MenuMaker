@@ -63,10 +63,6 @@ export class IngredientsController {
     description: 'Bad Request',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
-  @response(404, {
-    description: 'Not Found',
-    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
-  })
   @response(500, {
     description: 'Internal Server Error',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
@@ -154,7 +150,3 @@ export class IngredientsController {
     await this.ingredientsRepository.deleteById(id);
   }
 }
-function ErrorResponse(ErrorResponse: any): import("@loopback/rest").SchemaObject | import("@loopback/rest").ReferenceObject | undefined {
-  throw new Error('Function not implemented.');
-}
-

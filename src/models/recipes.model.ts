@@ -30,13 +30,13 @@ export class Recipes extends Entity {
     type: 'string',
     required: true,
   })
-  Kitchen_type: string;
+  KitchenType: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  Dish_type: string;
+  DishType: string;
 
   @property({
     type: 'number',

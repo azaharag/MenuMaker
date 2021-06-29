@@ -65,10 +65,6 @@ export class RecipesController {
     description: 'Bad Request',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
-  @response(404, {
-    description: 'Not Found',
-    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
-  })
   @response(500, {
     description: 'Internal Server Error',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
@@ -213,18 +209,18 @@ export class RecipesController {
     }) ingredients: Omit<Ingredients, 'Id'>,
   ): Promise<Ingredients> {
 
-    let ingrediente = await this.ingredientRepository.find({
+    const ingrediente = await this.ingredientRepository.find({
       where: {
         Name: ingredients.Name
       },
     });
     //console.log(ingrediente);
-    if (ingrediente.length == 0) {
+    if (ingrediente.length === 0) {
       return this.recipesRepository.Ingredients(id).create(ingredients);
     }
     else {
       //this.ingredientRepository.findById(ingrediente[0].Id);
-      let ri: RecipeIngredient = new RecipeIngredient();
+      const ri: RecipeIngredient = new RecipeIngredient();
       ri.IngredientId = ingrediente[0].Id;
       ri.RecipeId = id!;
       this.recipeIngredientRepository.create(ri);

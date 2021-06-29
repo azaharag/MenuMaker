@@ -1,17 +1,18 @@
 {
   "ids": {
-    "Ingredients": 5,
-    "Recipes": 3,
-    "RecipeIngredient": 5,
-    "Menus": 4,
-    "MenusRecipes": 1
+    "Ingredients": 9,
+    "Recipes": 5,
+    "RecipeIngredient": 6,
+    "Menus": 5,
+    "MenusRecipes": 2
   },
   "models": {
     "Ingredients": {
       "fb146561-a4eb-4a30-b718-d910790c4026": "{\"Id\":\"fb146561-a4eb-4a30-b718-d910790c4026\",\"Name\":\"Ajo\",\"Type\":\"Condimento\",\"Calories\":0}",
-      "a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf": "{\"Id\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Name\":\"Tomate\",\"Type\":\"Verdura\",\"Calories\":34}",
+      "a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf": "{\"Id\":\"a77d90e4-ff70-4ea9-9e70-2b03ba8ba2bf\",\"Name\":\"Tomate\",\"Type\":\"Fruta\",\"Calories\":34}",
       "48d80318-482a-4b91-a76f-2e21c9f58c4c": "{\"Id\":\"48d80318-482a-4b91-a76f-2e21c9f58c4c\",\"Name\":\"Pimiento\",\"Type\":\"Verdura\",\"Calories\":0}",
-      "649f5624-d5c3-43bd-84d4-5d5ca2537477": "{\"Id\":\"649f5624-d5c3-43bd-84d4-5d5ca2537477\",\"Name\":\"Lechuga\",\"Type\":\"Verdura\",\"Calories\":20}"
+      "649f5624-d5c3-43bd-84d4-5d5ca2537477": "{\"Id\":\"649f5624-d5c3-43bd-84d4-5d5ca2537477\",\"Name\":\"Lechuga\",\"Type\":\"Verdura\",\"Calories\":20}",
+      "ecf45ac6-2aef-4b37-a303-64309308f984": "{\"Id\":\"ecf45ac6-2aef-4b37-a303-64309308f984\",\"Name\":\"Melocotón\",\"Type\":\"Fruta\",\"Calories\":100}"
     },
     "Recipes": {
       "224753e4-935c-4705-b63e-ed47333ae3ed": "{\"Category\":\"Salado\",\"Id\":\"224753e4-935c-4705-b63e-ed47333ae3ed\",\"Kitchen_type\":\"Comida\",\"Dish_type\":\"Sopa\",\"Difficulty\":0,\"Time\":\"10\",\"Steps\":[\"abrir bote\"]}",

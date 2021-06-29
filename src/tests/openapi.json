@@ -1,0 +1,2464 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "menumaker",
+    "version": "0.0.1",
+    "description": "API de la aplicación Menu Maker",
+    "contact": {}
+  },
+  "paths": {
+    "/ingredients/{id}": {
+      "put": {
+        "x-controller-name": "IngredientsController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "IngredientsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingredients PUT success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngredientsWithRelations"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngredientsExcluding_Id_"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "IngredientsController.replaceById"
+      },
+      "get": {
+        "x-controller-name": "IngredientsController",
+        "x-operation-name": "findById",
+        "tags": [
+          "IngredientsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ingredients model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngredientsWithRelations"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ingredients.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "IngredientsController.findById"
+      },
+      "delete": {
+        "x-controller-name": "IngredientsController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "IngredientsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Ingredients DELETE success"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "IngredientsController.deleteById"
+      }
+    },
+    "/ingredients": {
+      "post": {
+        "x-controller-name": "IngredientsController",
+        "x-operation-name": "create",
+        "tags": [
+          "IngredientsController"
+        ],
+        "responses": {
+          "201": {
+            "description": "Ingredients model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ingredients"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewIngredients"
+              }
+            }
+          }
+        },
+        "operationId": "IngredientsController.create"
+      },
+      "get": {
+        "x-controller-name": "IngredientsController",
+        "x-operation-name": "find",
+        "tags": [
+          "IngredientsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Ingredients model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IngredientsWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ingredients.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "IngredientsController.find"
+      }
+    },
+    "/menus/{id}/recipes": {
+      "post": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "createRel",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "201": {
+            "description": "create a Recipes model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipes"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewRecipesInMenus"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "MenusController.createRel"
+      },
+      "get": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "findRel",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Menus has many Recipes through MenusRecipes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recipes"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MenusController.findRel"
+      },
+      "delete": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "delete",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Menus.Recipes DELETE success count"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Recipes.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Recipes>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MenusController.delete"
+      }
+    },
+    "/menus/{id}": {
+      "put": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Menus PUT success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenusWithRelations"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MenusExcluding_Id_"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "MenusController.replaceById"
+      },
+      "get": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "findById",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Menus model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MenusWithRelations"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menus.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MenusController.findById"
+      },
+      "delete": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Menus DELETE success"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "MenusController.deleteById"
+      }
+    },
+    "/menus": {
+      "post": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "create",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "201": {
+            "description": "Menus model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menus"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewMenus"
+              }
+            }
+          }
+        },
+        "operationId": "MenusController.create"
+      },
+      "get": {
+        "x-controller-name": "MenusController",
+        "x-operation-name": "find",
+        "tags": [
+          "MenusController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Menus model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MenusWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Menus.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "MenusController.find"
+      }
+    },
+    "/ping": {
+      "get": {
+        "x-controller-name": "PingController",
+        "x-operation-name": "ping",
+        "tags": [
+          "PingController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Ping Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        },
+        "operationId": "PingController.ping"
+      }
+    },
+    "/recipes/{id}/ingredients": {
+      "post": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "createRel",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "201": {
+            "description": "create a Ingredients model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ingredients"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewIngredientsInRecipes"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "RecipesController.createRel"
+      },
+      "get": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "findRel",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Recipes has many Ingredients through RecipeIngredient",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ingredients"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "RecipesController.findRel"
+      },
+      "delete": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "deleteRel",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "Recipes.Ingredients DELETE success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Ingredients.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Ingredients>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "RecipesController.deleteRel"
+      }
+    },
+    "/recipes/{id}": {
+      "put": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipes PUT success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipesWithRelations"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipesExcluding_Id_"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "RecipesController.replaceById"
+      },
+      "get": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "findById",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipes model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipesWithRelations"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipes.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "RecipesController.findById"
+      },
+      "delete": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Recipes DELETE success"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "RecipesController.deleteById"
+      }
+    },
+    "/recipes": {
+      "post": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "create",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "201": {
+            "description": "Recipes model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipes"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewRecipes"
+              }
+            }
+          }
+        },
+        "operationId": "RecipesController.create"
+      },
+      "get": {
+        "x-controller-name": "RecipesController",
+        "x-operation-name": "find",
+        "tags": [
+          "RecipesController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Recipes model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RecipesWithRelations"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Errors"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recipes.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "RecipesController.find"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://[::1]:3000"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Ingredients": {
+        "title": "Ingredients",
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Calories": {
+            "type": "number"
+          },
+          "Photo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Type",
+          "Calories"
+        ],
+        "additionalProperties": false
+      },
+      "Errors": {
+        "title": "Errors",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "additionalProperties": true
+      },
+      "NewIngredients": {
+        "title": "NewIngredients",
+        "type": "object",
+        "description": "(tsType: Omit<Ingredients, 'Id'>, schemaOptions: { title: 'NewIngredients', exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Calories": {
+            "type": "number"
+          },
+          "Photo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Type",
+          "Calories"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Ingredients, 'Id'>"
+      },
+      "IngredientsWithRelations": {
+        "title": "IngredientsWithRelations",
+        "type": "object",
+        "description": "(tsType: IngredientsWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Calories": {
+            "type": "number"
+          },
+          "Photo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Type",
+          "Calories"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "IngredientsWithRelations"
+      },
+      "IngredientsExcluding_Id_": {
+        "title": "IngredientsExcluding_Id_",
+        "type": "object",
+        "description": "(tsType: Omit<Ingredients, 'Id'>, schemaOptions: { exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Calories": {
+            "type": "number"
+          },
+          "Photo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Type",
+          "Calories"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Ingredients, 'Id'>"
+      },
+      "Menus": {
+        "title": "Menus",
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "ChefId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "ChefId"
+        ],
+        "additionalProperties": false
+      },
+      "NewMenus": {
+        "title": "NewMenus",
+        "type": "object",
+        "description": "(tsType: Omit<Menus, 'Id'>, schemaOptions: { title: 'NewMenus', exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ChefId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "ChefId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Menus, 'Id'>"
+      },
+      "RecipesWithRelations": {
+        "title": "RecipesWithRelations",
+        "type": "object",
+        "description": "(tsType: RecipesWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Category": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          },
+          "Kitchen_type": {
+            "type": "string"
+          },
+          "Dish_type": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "number"
+          },
+          "Time": {
+            "type": "string"
+          },
+          "Steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "Ingredients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IngredientsWithRelations"
+            }
+          }
+        },
+        "required": [
+          "Name",
+          "Category",
+          "Kitchen_type",
+          "Dish_type",
+          "Difficulty",
+          "Time",
+          "Steps"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "RecipesWithRelations"
+      },
+      "MenusWithRelations": {
+        "title": "MenusWithRelations",
+        "type": "object",
+        "description": "(tsType: MenusWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "Id": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "ChefId": {
+            "type": "string"
+          },
+          "recipes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RecipesWithRelations"
+            }
+          }
+        },
+        "required": [
+          "Name",
+          "ChefId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "MenusWithRelations"
+      },
+      "MenusExcluding_Id_": {
+        "title": "MenusExcluding_Id_",
+        "type": "object",
+        "description": "(tsType: Omit<Menus, 'Id'>, schemaOptions: { exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "ChefId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "ChefId"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Menus, 'Id'>"
+      },
+      "Recipes": {
+        "title": "Recipes",
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Category": {
+            "type": "string"
+          },
+          "Id": {
+            "type": "string"
+          },
+          "Kitchen_type": {
+            "type": "string"
+          },
+          "Dish_type": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "number"
+          },
+          "Time": {
+            "type": "string"
+          },
+          "Steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Name",
+          "Category",
+          "Kitchen_type",
+          "Dish_type",
+          "Difficulty",
+          "Time",
+          "Steps"
+        ],
+        "additionalProperties": false
+      },
+      "NewRecipesInMenus": {
+        "title": "NewRecipesInMenus",
+        "type": "object",
+        "description": "(tsType: Omit<Recipes, 'Id'>, schemaOptions: { title: 'NewRecipesInMenus', exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Category": {
+            "type": "string"
+          },
+          "Kitchen_type": {
+            "type": "string"
+          },
+          "Dish_type": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "number"
+          },
+          "Time": {
+            "type": "string"
+          },
+          "Steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Name",
+          "Category",
+          "Kitchen_type",
+          "Dish_type",
+          "Difficulty",
+          "Time",
+          "Steps"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Recipes, 'Id'>"
+      },
+      "NewRecipes": {
+        "title": "NewRecipes",
+        "type": "object",
+        "description": "(tsType: Omit<Recipes, 'Id'>, schemaOptions: { title: 'NewRecipes', exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Category": {
+            "type": "string"
+          },
+          "Kitchen_type": {
+            "type": "string"
+          },
+          "Dish_type": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "number"
+          },
+          "Time": {
+            "type": "string"
+          },
+          "Steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Name",
+          "Category",
+          "Kitchen_type",
+          "Dish_type",
+          "Difficulty",
+          "Time",
+          "Steps"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Recipes, 'Id'>"
+      },
+      "RecipesExcluding_Id_": {
+        "title": "RecipesExcluding_Id_",
+        "type": "object",
+        "description": "(tsType: Omit<Recipes, 'Id'>, schemaOptions: { exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Category": {
+            "type": "string"
+          },
+          "Kitchen_type": {
+            "type": "string"
+          },
+          "Dish_type": {
+            "type": "string"
+          },
+          "Difficulty": {
+            "type": "number"
+          },
+          "Time": {
+            "type": "string"
+          },
+          "Steps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "Name",
+          "Category",
+          "Kitchen_type",
+          "Dish_type",
+          "Difficulty",
+          "Time",
+          "Steps"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Recipes, 'Id'>"
+      },
+      "NewIngredientsInRecipes": {
+        "title": "NewIngredientsInRecipes",
+        "type": "object",
+        "description": "(tsType: Omit<Ingredients, 'Id'>, schemaOptions: { title: 'NewIngredientsInRecipes', exclude: [ 'Id' ] })",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "Type": {
+            "type": "string"
+          },
+          "Calories": {
+            "type": "number"
+          },
+          "Photo": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "Name",
+          "Type",
+          "Calories"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Ingredients, 'Id'>"
+      },
+      "Ingredients.Filter": {
+        "type": "object",
+        "title": "Ingredients.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "boolean"
+                  },
+                  "Name": {
+                    "type": "boolean"
+                  },
+                  "Type": {
+                    "type": "boolean"
+                  },
+                  "Calories": {
+                    "type": "boolean"
+                  },
+                  "Photo": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Id",
+                    "Name",
+                    "Type",
+                    "Calories",
+                    "Photo"
+                  ],
+                  "example": "Id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Ingredients.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Ingredients>"
+      },
+      "Ingredients.Filter1": {
+        "type": "object",
+        "title": "Ingredients.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Ingredients.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "boolean"
+                  },
+                  "Name": {
+                    "type": "boolean"
+                  },
+                  "Type": {
+                    "type": "boolean"
+                  },
+                  "Calories": {
+                    "type": "boolean"
+                  },
+                  "Photo": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Id",
+                    "Name",
+                    "Type",
+                    "Calories",
+                    "Photo"
+                  ],
+                  "example": "Id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Ingredients.Fields"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Ingredients>"
+      },
+      "Menus.ScopeFilter": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Menus.ScopeFilter"
+      },
+      "Menus.IncludeFilter.Items": {
+        "title": "Menus.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Menus.ScopeFilter"
+          }
+        }
+      },
+      "Menus.Filter": {
+        "type": "object",
+        "title": "Menus.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "boolean"
+                  },
+                  "Name": {
+                    "type": "boolean"
+                  },
+                  "ChefId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Id",
+                    "Name",
+                    "ChefId"
+                  ],
+                  "example": "Id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Menus.Fields"
+          },
+          "include": {
+            "title": "Menus.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Menus.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Menus>"
+      },
+      "Menus.Filter1": {
+        "type": "object",
+        "title": "Menus.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Menus.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "boolean"
+                  },
+                  "Name": {
+                    "type": "boolean"
+                  },
+                  "ChefId": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Id",
+                    "Name",
+                    "ChefId"
+                  ],
+                  "example": "Id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Menus.Fields"
+          },
+          "include": {
+            "title": "Menus.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Menus.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Menus>"
+      },
+      "PingResponse": {
+        "type": "object",
+        "title": "PingResponse",
+        "properties": {
+          "greeting": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "headers": {
+            "type": "object",
+            "properties": {
+              "Content-Type": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "Recipes.ScopeFilter": {
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Recipes.ScopeFilter"
+      },
+      "Recipes.IncludeFilter.Items": {
+        "title": "Recipes.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Recipes.ScopeFilter"
+          }
+        }
+      },
+      "Recipes.Filter": {
+        "type": "object",
+        "title": "Recipes.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "boolean"
+                  },
+                  "Category": {
+                    "type": "boolean"
+                  },
+                  "Id": {
+                    "type": "boolean"
+                  },
+                  "Kitchen_type": {
+                    "type": "boolean"
+                  },
+                  "Dish_type": {
+                    "type": "boolean"
+                  },
+                  "Difficulty": {
+                    "type": "boolean"
+                  },
+                  "Time": {
+                    "type": "boolean"
+                  },
+                  "Steps": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Name",
+                    "Category",
+                    "Id",
+                    "Kitchen_type",
+                    "Dish_type",
+                    "Difficulty",
+                    "Time",
+                    "Steps"
+                  ],
+                  "example": "Name"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Recipes.Fields"
+          },
+          "include": {
+            "title": "Recipes.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Recipes.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Recipes>"
+      },
+      "Recipes.Filter1": {
+        "type": "object",
+        "title": "Recipes.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Recipes.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "boolean"
+                  },
+                  "Category": {
+                    "type": "boolean"
+                  },
+                  "Id": {
+                    "type": "boolean"
+                  },
+                  "Kitchen_type": {
+                    "type": "boolean"
+                  },
+                  "Dish_type": {
+                    "type": "boolean"
+                  },
+                  "Difficulty": {
+                    "type": "boolean"
+                  },
+                  "Time": {
+                    "type": "boolean"
+                  },
+                  "Steps": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "Name",
+                    "Category",
+                    "Id",
+                    "Kitchen_type",
+                    "Dish_type",
+                    "Difficulty",
+                    "Time",
+                    "Steps"
+                  ],
+                  "example": "Name"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Recipes.Fields"
+          },
+          "include": {
+            "title": "Recipes.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Recipes.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Recipes>"
+      }
+    }
+  }
+}

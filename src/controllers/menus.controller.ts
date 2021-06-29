@@ -65,10 +65,6 @@ export class MenusController {
     description: 'Bad Request',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
-  @response(404, {
-    description: 'Not Found',
-    content: {'application/json': {schema: getModelSchemaRef(Errors)}},
-  })
   @response(500, {
     description: 'Internal Server Error',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
@@ -214,12 +210,12 @@ export class MenusController {
     }) recipes: Omit<Recipes, 'id'>,
   ): Promise<Recipes> {
 
-    let receta = await this.recipesRepository.find({where: {Name: recipes.Name}, });
+    const receta = await this.recipesRepository.find({where: {Name: recipes.Name}, });
 
     if (receta.length > 0) {
-      let mr: MenusRecipes = new MenusRecipes();
+      const mr: MenusRecipes = new MenusRecipes();
       mr.MenuId = id!;
-      mr.RecipeId = receta[0].id;
+      mr.RecipeId = receta[0].Id!;
       this.menusRecipesRepository.create(mr);
       return receta[0];
     }
@@ -243,7 +239,7 @@ export class MenusController {
     description: 'Internal Server Error',
     content: {'application/json': {schema: getModelSchemaRef(Errors)}},
   })
-  async delete(
+  async deleteRel(
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Recipes)) where?: Where<Recipes>,
   ): Promise<void> {
